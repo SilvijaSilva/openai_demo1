@@ -14,24 +14,30 @@ client = OpenAI(
     base_url=endpoint,
     api_key=token,
 )
-# ask the user for a question
-question = input("Įveskite klausimą: ")
 
-response = client.chat.completions.create(
-    messages=[
-        {
-            "role": "system",
-            "content": "You are a helpful assistant.",
-        },
-        {
-            "role": "user",
-            "content": question,
-        }
-    ],
-    temperature=1.0,
-    top_p=1.0,
-    model=model
-)
+while True:
+    # ask the user for a question
+    question = input("Įveskite klausimą arba žodį 'exit', norėdami išeiti: ")
 
-print("\nAtsakymas:\n")
-print(response.choices[0].message.content)
+    if question.lower() == "exit":
+        print("Išeinama iš programos")
+        break
+
+    response = client.chat.completions.create(
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a helpful assistant.",
+            },
+            {
+                "role": "user",
+                "content": question,
+            }
+        ],
+        temperature=1.0,
+        top_p=1.0,
+        model=model
+    )
+
+    print("\nAtsakymas:\n")
+    print(response.choices[0].message.content)
