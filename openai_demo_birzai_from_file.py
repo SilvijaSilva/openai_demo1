@@ -32,7 +32,7 @@ while True:
 
     response = client.chat.completions.create(
         messages=[
-            {"role": "system","content": "You are a helpful assistant. Use the following context about Biržai to answer the user's questions."},
+            {"role": "system","content": "You are a helpful assistant. Use the following context about Biržai to answer the user's questions. Please remember our conversation. Don't create an answer if you don't have an information about the question."},
             {"role": "system","content": birzai_text},
             {"role": "user","content": user_input}
         ],
