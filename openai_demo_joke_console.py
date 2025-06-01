@@ -38,5 +38,5 @@ while True:
         model=model
     )
 
-    print("\nAtsakymas:\n")
+    print("Atsakymas:")
     print(response.choices[0].message.content)
