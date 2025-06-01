@@ -24,14 +24,7 @@ messages.append({
 
 print("Sveiki atvykę į pokalbių programą su AI! Norėdami išeiti, įveskite 'exit'.")
 
-while True:
-    # ask the user for a question
-    question = input("Įveskite klausimą: ")
-
-    if question.lower() == "exit":
-        print("Išeinama iš programos")
-        break
-
+def ask_ai(question, messages, client, model):
     messages.append({
         "role": "user",
         "content": question
@@ -49,7 +42,18 @@ while True:
         "role": "assistant",
         "content": ai_reply
     })
-    # Print the AI's response
+    
+    return ai_reply
+
+while True:
+    # ask the user for a question
+    question = input("Įveskite klausimą: ")
+
+    if question.lower() == "exit":
+        print("Išeinama iš programos")
+        break
+
+    ai_reply = ask_ai(question, messages, client, model)
 
     print("\n--- Pokalbis iki šiol ---")
     for message in messages:
